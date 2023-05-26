@@ -1,36 +1,40 @@
 //banking management system 
 
 class BankAccount {
+    //properties
+    // accountNumber;
+    // accountHolder;
+    // balance;
     //constructor
     constructor(accountNumber, accountHolder, balance) {
-        this.#accountNumber = accountNumber;
-        this.#accountHolder = accountHolder;
-        this.#balance = balance;
+        this._accountNumber = accountNumber;
+        this._accountHolder = accountHolder;
+        this._balance = balance;
     }
 
     getAccountNumber() {
-        return this.#accountNumber;
+        return this._accountNumber;
     }
 
     getAccountHolder() {
-        return this.#accountHolder;
+        return this._accountHolder;
     }
 
     getBalance() {
-        return this.#balance;
+        return this._balance;
     }
 
     deposit(amount) {
         if (amount > 0) {
-            this.#balance += amount;
+            this._balance += amount;
         }
-        console.log(`The deposited ${amount} was deposited to ${this.accountNumber}`);
+        console.log(`The deposited ${amount} was deposited to ${this._accountNumber}`);
 
     }
 
     withdraw(amount) {
-        if (amount > 0 && amount <= this.#balance) {
-            this.#balance -= amount;
+        if (amount > 0 && amount <= this._balance) {
+            this._balance -= amount;
             console.log(`The ${amount} was withdrawn from this account ${this._accountNumber}`);
         } else {
             console.log("Your balance is insufficient.");
@@ -46,12 +50,12 @@ class SavingsAccount extends BankAccount() {
 
     constructor(accountNumber, accountHolder, balance, interestRate) {
         super(accountNumber, accountHolder, balance);
-        this.#interestRate = interestRate;
+        this._interestRate = interestRate;
     }
 
     calculateInterest() {
-        let interest = this.#balance * this.#interestRate / 100;
-        console.log(`Interest for this account ${this.#accountNumber} is: ${interest}`)
+        let interest = this._balance * this._interestRate / 100;
+        console.log(`Interest for this account ${this._accountNumber} is: ${interest}`)
 
     }
 }
@@ -59,21 +63,21 @@ class SavingsAccount extends BankAccount() {
 class CheckingAccount extends BankAccount() {
     constructor(accountNumber, accountHolder, balance, overDraftLimit) {
         super(accountNumber, accountHolder, balance);
-        this.#overDraftLimit = overDraftLimit;
+        this._overDraftLimit = overDraftLimit;
     }
 
     get overDraftLimit() {
-        return this.#overDraftLimit;
+        return this._overDraftLimit;
     }
 
     set overDraftLimit(limit) {
-        this.#overDraftLimit = limit;
+        this._overDraftLimit = limit;
     }
 
     withdraw(amount) {
-        if (amount <= this.#balance + this.#overDraftLimit) {
-            this.#balance -= amount;
-            console.log(`The ${amount} withdrawn is from this account ${this.#accountNumber}`);
+        if (amount <= this._balance + this._overDraftLimit) {
+            this._balance -= amount;
+            console.log(`The ${amount} withdrawn is from this account ${this._accountNumber}`);
         } else {
             console.log("You exceeded the overdraft limit")
         }
