@@ -44,9 +44,7 @@ class BankAccount {
 
 
 }
-
-
-class SavingsAccount extends BankAccount() {
+class SavingsAccount extends BankAccount {
 
     constructor(accountNumber, accountHolder, balance, interestRate) {
         super(accountNumber, accountHolder, balance);
@@ -60,7 +58,7 @@ class SavingsAccount extends BankAccount() {
     }
 }
 
-class CheckingAccount extends BankAccount() {
+class CheckingAccount extends BankAccount {
     constructor(accountNumber, accountHolder, balance, overDraftLimit) {
         super(accountNumber, accountHolder, balance);
         this._overDraftLimit = overDraftLimit;
